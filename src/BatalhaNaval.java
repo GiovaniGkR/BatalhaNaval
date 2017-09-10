@@ -119,13 +119,16 @@ public class BatalhaNaval {
             y = Integer.parseInt(sc.nextLine()) - 1;
             //verifica se a coordenada eh valida
                 if ((y > 5) || (y < 0)){
-                System.out.println("Entrada inválida");
-                bn.atirar();
-            }
-            tab.atirar(x, y);
-            
+                    System.out.println("");
+                    System.out.println("Entrada inválida");
+                    bn.atirar();
+                }
+                tab.atirar(x, y);  
+
+                    
             //verifica se o player afundou todas as embarcacoes do pc antes da vez do pc
             if (tab.finalizar != 1) {
+                System.out.println("");
                 System.out.println("Vez do PC: ");
                 tab.atirarPC();
             }

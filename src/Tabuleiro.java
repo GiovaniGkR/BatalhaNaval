@@ -24,6 +24,11 @@ public class Tabuleiro {
 
     //Inicia e reinicia os tabuleiros do player e do pc 
     void inicializaTabuleiro() {
+        navios = 0;
+        finalizar = 0;
+        acertosPC = 0;
+        acertosPlayer = 0;
+        tentativas = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 tabuleiroPlayer[i][j] = -1;
@@ -102,23 +107,24 @@ public class Tabuleiro {
     //metodo para atirar
     //mostra o tabuleiro do pc e do player a cada tiro
     int atirar(int x, int y) {
-        
+           
         //verifica se afundou a embarcacao do pc
         if (tabuleiroPC[x][y] != -1) {
             System.out.println("");
             System.out.println("Você afundou a embarcação");
             tabuleiroPCImpresso[x][y] = " * ";
+            tabuleiroPC[x][y] = 2;
             imprimirTabuleiro();
             acertosPlayer += 1;
             tentativas += 1;
             finalizar();
             return acertosPlayer;
 
-
         } else {
             System.out.println("");
             System.out.println("Você errou o tiro");
             tabuleiroPCImpresso[x][y] = " x ";
+            tabuleiroPC[x][y] = 2;
             imprimirTabuleiro();
             tentativas += 1;
             return acertosPlayer;
@@ -133,19 +139,26 @@ public class Tabuleiro {
         int y;
         x = random.nextInt(5);
         y = random.nextInt(5);
-        //verifica se afundou a embarcacao do player
+        
+        //verifica se ja foi dado um tiro na coordenada 
+        if (tabuleiroPlayer[x][y] == 2) {
+            atirarPC();
+            
+        } else //verifica se afundou a embarcacao do player
         if (tabuleiroPlayer[x][y] != -1) {
             System.out.println("");
             System.out.println("O PC afundou sua embarcação");
             tabuleiroPlayerImpresso[x][y] = " * ";
+            tabuleiroPlayer[x][y] = 2;
             imprimirTabuleiro();
             acertosPC += 1;
             finalizar();
-                        
+
         } else {
             System.out.println("");
             System.out.println("O PC errou o tiro");
             tabuleiroPlayerImpresso[x][y] = " x ";
+            tabuleiroPlayer[x][y] = 2;
             imprimirTabuleiro();
         }
 
