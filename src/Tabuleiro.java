@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Giovani
  */
 public class Tabuleiro {
-
+    //atributos
     int tabuleiroPlayer[][] = new int[5][5];
     int tabuleiroPC[][] = new int[5][5];
     String tabuleiroPlayerImpresso[][] = new String[5][5];
@@ -22,7 +22,7 @@ public class Tabuleiro {
     int navios = 0;
     int finalizar = 0;
 
-    //iniciar e reinicar o tabuleiroPlayer que controla os navios e tiros    
+    //Inicia e reinicia os tabuleiros do player e do pc 
     void inicializaTabuleiro() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -37,8 +37,9 @@ public class Tabuleiro {
         }
     }
 
-    //Inserir os navios    
+    //Inserir os navios do player  
     void inserirNavio(int x, int y) {
+        //valida se a coordenada ja esta ocupada
         if (tabuleiroPlayer[x][y] != -1) {
             System.out.println("Esta coordenada já está ocupada! \n");
         } else {
@@ -46,14 +47,16 @@ public class Tabuleiro {
             navios += 1;
         }
     }
-
+    
+    //inserir os navios do pc
     void inserirNavioPC() {
         Random random = new Random();
         int i;
         int j;
         i = random.nextInt(5);
         j = random.nextInt(5);
-
+        
+        //valida se eh possivel inserir o navio na coordenada gerada aleatoriamente
         if (tabuleiroPC[i][j] == -1) {
             tabuleiroPC[i][j] = 1;
         } else {
@@ -62,7 +65,8 @@ public class Tabuleiro {
 
     }
 
-    //Este eh o tabuleiroPlayer que sera mostrado ao jogador    
+    //este metodo preenche o tabuleiro que eh mostrado ao jogador
+    //o tabuleiro impresso serve apenas como uma referencia visual, enquanto que o outro eh responsavel por boa parte das intereacoes    
     void preencherTabuleiro() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -95,9 +99,11 @@ public class Tabuleiro {
         }
     }
 
-    //metodo para atirar. Tambem chama o imprimir tabuleiroPlayer apos cada tiro
+    //metodo para atirar
+    //mostra o tabuleiro do pc e do player a cada tiro
     int atirar(int x, int y) {
-
+        
+        //verifica se afundou a embarcacao do pc
         if (tabuleiroPC[x][y] != -1) {
             System.out.println("");
             System.out.println("Você afundou a embarcação");
@@ -119,12 +125,15 @@ public class Tabuleiro {
         }
     }
 
+    //metodo para o pc atirar
+    //mostra o tabuleiro do player e do pc a cada tiro
     void atirarPC() {
         Random random = new Random();
         int x;
         int y;
         x = random.nextInt(5);
         y = random.nextInt(5);
+        //verifica se afundou a embarcacao do player
         if (tabuleiroPlayer[x][y] != -1) {
             System.out.println("");
             System.out.println("O PC afundou sua embarcação");
@@ -142,6 +151,7 @@ public class Tabuleiro {
 
     }
     
+    //metodo para verificar quem foi o vencedor
     void finalizar(){
         if (acertosPlayer == navios) {
             System.out.println("");

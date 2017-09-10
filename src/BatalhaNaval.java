@@ -57,19 +57,23 @@ public class BatalhaNaval {
         }while(bn.op != 9);
     }
 
+    //chama os metodos para inicializacao e preenchimento dos tabuleiros
     void inicializar(){
         tab.inicializaTabuleiro();
         tab.preencherTabuleiro();
     }
     
+    //inserindo os navios
     void inserirNavio(){
         BatalhaNaval bn = new BatalhaNaval();
         int x = 0;
         int y = 0;
         
+        //verica se nao excedeu o numero maximo de navios
         if (tab.navios != 3){
         System.out.println("Digite a coordenada X do seu navio(de 1 a 5)");
         x = Integer.parseInt(sc.nextLine()) - 1;
+        //verifica se a coordenada eh valida
         if ((x > 5) || (x < 0)){
             System.out.println("Entrada inválida");
             bn.inserirNavio();
@@ -77,12 +81,14 @@ public class BatalhaNaval {
         
         System.out.println("Digite a coordenada Y do seu navio(de 1 a 5)");
         y = Integer.parseInt(sc.nextLine()) - 1;
+        //verifica se a coordenada eh valida
         if ((y > 5) || (y < 0)){
             System.out.println("");
             System.out.println("Entrada inválida");
             bn.inserirNavio();
-        }        
+        }
         
+        //chama os metodos responsaveis por inserir os navios do player e do pc
         tab.inserirNavio(x, y);
         tab.inserirNavioPC();
         }
@@ -97,11 +103,13 @@ public class BatalhaNaval {
         BatalhaNaval bn = new BatalhaNaval();
         int x = 0;
         int y = 0;
-
+        
+        //Laço "do while" que so se encerra quando todas as embarcacoes do player ou do pc sao afundadas
         do {
             System.out.println("");
             System.out.println("Digite a coordenada X do seu tiro(de 1 a 5)");
             x = Integer.parseInt(sc.nextLine()) - 1;
+            //verifica se a coordenada eh valida
                 if ((x > 5) || (x < 0)){
                 System.out.println("Entrada inválida");
                 bn.atirar();
@@ -109,12 +117,14 @@ public class BatalhaNaval {
             System.out.println("");
             System.out.println("Digite a coordenada Y do seu tiro(de 1 a 5)");
             y = Integer.parseInt(sc.nextLine()) - 1;
+            //verifica se a coordenada eh valida
                 if ((y > 5) || (y < 0)){
                 System.out.println("Entrada inválida");
                 bn.atirar();
             }
             tab.atirar(x, y);
             
+            //verifica se o player afundou todas as embarcacoes do pc antes da vez do pc
             if (tab.finalizar != 1) {
                 System.out.println("Vez do PC: ");
                 tab.atirarPC();
