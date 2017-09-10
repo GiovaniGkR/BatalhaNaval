@@ -10,6 +10,7 @@ import java.util.Scanner;
  * Vance quem afundar todas as embarcacoes adversarias.
  * o player eh sempre o primeiro a jogar.
  */
+
 public class BatalhaNaval {
     Tabuleiro tab = new Tabuleiro();
     Scanner sc = new Scanner(System.in);
@@ -59,7 +60,6 @@ public class BatalhaNaval {
     void inicializar(){
         tab.inicializaTabuleiro();
         tab.preencherTabuleiro();
-        //tab.afundar = 0;
     }
     
     void inserirNavio(){
